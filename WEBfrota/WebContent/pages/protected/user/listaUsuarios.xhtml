@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<h:body>
+    <h:form>
+        <h3>#{msgs.loginHello}: #{usuarioMB.usuario.nome} || <h:commandLink action="#{usuarioMB.logOut()}" value="#{msgs.logout}" /> </h3>
+ 
+        <h:messages />
+        <h:dataTable value="#{usuarioMB.allUsuarios}" var="usu" styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" >
+            <h:column>
+                <f:facet name="header">
+                    #{msgs.usuarioNome}
+                </f:facet>
+ 
+                #{usu.nome}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    #{msgs.usuarioEmail}
+                </f:facet>
+ 
+                #{usu.email}
+            </h:column>
+            <h:column>
+                <h:panelGrid columns="2">
+                    <!-- Sempre salva o id como um campo escondido -->
+                    <h:inputHidden value="#{usu.id}" />
+ 
+                    <h:commandButton action="#{usuarioMB.updateUsuario()}" value="#{msgs.update}" rendered="#{usuarioMB.userAdmin}" >
+                        <f:setPropertyActionListener target="#{usuarioMB.usuario}" value="#{usu}" />
+                    </h:commandButton>
+                    <h:commandButton action="#{usuarioMB.deleteUsuario()}" value="#{msgs.delete}" rendered="#{usuarioMB.userAdmin}" >
+                        <f:setPropertyActionListener target="#{usuarioMB.usuario}" value="#{usu}" />
+                    </h:commandButton>
+                </h:panelGrid>
+            </h:column>
+        </h:dataTable>
+        <!-- Esse botão é exibido ao usuário, pra visualização da mensagem de erro msg  -->
+        <h:commandButton action="createUsuario" value="#{msgs.create} #{msgs.usuario}" />
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="logout::#pages#protected#user#listaUsuarios.xhtml" NAME="output"
+    PATH="/pages/protected/user/listaUsuarios.xhtml"
+    TARGET="rules:#pages#protected#user#listaUsuarios.xhtml"
+    TITLE="logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="listaUsarios::#pages#protected#user#listaUsuarios.xhtml"
+    NAME="output" PATH="/pages/protected/user/listaUsuarios.xhtml"
+    TARGET="rules:#pages#protected#user#listaUsuarios.xhtml"
+    TITLE="listaUsarios" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="createUsuario::#pages#protected#admin#createUsuario.xhtml"
+    NAME="output" PATH="/pages/protected/admin/createUsuario.xhtml"
+    TARGET="rules:#pages#protected#admin#createUsuario.xhtml"
+    TITLE="createUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::3" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="updateUsuario::#pages#protected#admin#updateUsuario.xhtml"
+    NAME="output" PATH="/pages/protected/admin/updateUsuario.xhtml"
+    TARGET="rules:#pages#protected#admin#updateUsuario.xhtml"
+    TITLE="updateUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::4" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="deleteUsuario::#pages#protected#admin#deleteUsuario.xhtml"
+    NAME="output" PATH="/pages/protected/admin/deleteUsuario.xhtml"
+    TARGET="rules:#pages#protected#admin#deleteUsuario.xhtml"
+    TITLE="deleteUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#protected#user#listaUsuarios.xhtml"
+  PATH="/pages/protected/user/listaUsuarios.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#protected#admin#updateUsuario.xhtml"
+  PATH="/pages/protected/admin/updateUsuario.xhtml" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#protected#admin#createUsuario.xhtml"
+  PATH="/pages/protected/admin/createUsuario.xhtml" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#protected#admin#deleteUsuario.xhtml"
+  PATH="/pages/protected/admin/deleteUsuario.xhtml" SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>
