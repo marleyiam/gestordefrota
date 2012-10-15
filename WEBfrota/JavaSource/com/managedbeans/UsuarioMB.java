@@ -90,7 +90,7 @@ public class UsuarioMB {
 		try {
 			usuarioFacade.save(usuario);
 		} catch (EJBException e) {
-			sendErrorMessageToUser("Error.m");
+			sendErrorMessageToUser("Error ao criar usuario");
 
 			return FIQUE_NA_MESMA_PAGINA;
 		}

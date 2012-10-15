@@ -6,6 +6,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
  
+    
     <navigation-rule>
         <navigation-case>
             <from-outcome>logout</from-outcome>
@@ -15,7 +16,7 @@
     </navigation-rule>
     <navigation-rule>
         <navigation-case>
-            <from-outcome>listaUsarios</from-outcome>
+            <from-outcome>listaUsuarios</from-outcome>
             <to-view-id>/pages/protected/user/listaUsuarios.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>

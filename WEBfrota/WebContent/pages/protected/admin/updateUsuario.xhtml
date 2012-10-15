@@ -3,24 +3,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.prime.com.tr/ui">
 <h:head>
-    <h:outputStylesheet library="css" name="main.css" />
+<link type="text/css" rel="stylesheet" href="dot-luv/skin.css" />
 </h:head>
 <h:body>
+<p:panel header="#{msgs.usuarioUpdateHeader}: ">
     <h:form>
         <h:messages/>
  
-        <h3>#{msgs.usuarioUpdateHeader}: #{usuarioMB.usuario.nome}</h3>
+        <h3>#{usuarioMB.usuario.nome}</h3>
         <h:inputHidden value="#{usuarioMB.usuario.id}" />
         <h:panelGrid columns="2" styleClass="panelGrid" rowClasses="panelFirstLine,panelNextLine" >
-            <h:outputLabel for="nomeUsuario" value="#{msgs.usuarioNome}" />
-            <h:inputText id="nomeUsuario" value="#{usuarioMB.usuario.nome}" required="true" requiredMessage="#{msgs.usuarioNomeRequired}" />
+            <h:outputLabel for="emailUsuario" value="#{msgs.usuarioEmail}" />
+            <!--<h:inputText id="emailUsuario" value="#{usuarioMB.usuario.email}" required="true" requiredMessage="#{msgs.usuarioEmailRequired}" />-->
+            <p:inputText id="emailUsuario" value="#{usuarioMB.usuario.email}" size="20" required="true" requiredMessage="#{msgs.usuarioEmailRequired}" />
+            <p:message for="emailUsuario" />
  
-            <h:outputLabel for="usuarioEmail" value="#{msgs.usuarioEmail}" />
-            <h:inputText id="usuarioEmail" value="#{usuarioMB.usuario.email}" required="true" requiredMessage="#{msgs.usuarioEmailRequired}" >
-                <f:convertNumber />
-            </h:inputText>
+            <h:outputLabel for="usuarioSenha" value="#{msgs.usuarioSenha}" />
+            <!--<h:inputText id="usuarioSenha" value="#{usuarioMB.usuario.senha}" required="true" requiredMessage="#{msgs.usuarioSenhaRequired}" />-->
+            <p:password feedback="true" weakLabel="fraco" goodLabel="médio" strongLabel="forte" promptLabel="Por favor digite a senha !" minLength="" id="senhaUsuario" value="#{usuarioMB.usuario.senha}"
+			size="20" required="true" requiredMessage="#{msgs.usuarioSenhaRequired}" />
+			<p:message for="senhaUsuario" />
         </h:panelGrid>
         <h:panelGrid columns="2">
             <h:commandButton action="#{usuarioMB.updateUsuarioFinal()}" value="#{msgs.update}" />
@@ -28,5 +33,6 @@
         </h:panelGrid>
         <br/>
     </h:form>
+    </p:panel>
 </h:body>
 </html>

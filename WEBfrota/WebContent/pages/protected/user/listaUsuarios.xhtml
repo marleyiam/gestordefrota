@@ -1,48 +1,126 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
 <h:head>
-    <h:outputStylesheet library="css" name="main.css" />
+	<link type="text/css" rel="stylesheet" href="dot-luv/skin.css" />
 </h:head>
 <h:body>
-    <h:form>
-        <h3>#{msgs.loginHello}: #{usuarioMB.usuario.nome} || <h:commandLink action="#{usuarioMB.logOut()}" value="#{msgs.logout}" /> </h3>
- 
-        <h:messages />
-        <h:dataTable value="#{usuarioMB.allUsuarios}" var="usu" styleClass="table" headerClass="tableColumnsHeader" rowClasses="tableFirstLine,tableNextLine" >
-            <h:column>
-                <f:facet name="header">
-                    #{msgs.usuarioNome}
-                </f:facet>
- 
-                #{usu.nome}
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    #{msgs.usuarioEmail}
-                </f:facet>
- 
-                #{usu.email}
-            </h:column>
-            <h:column>
-                <h:panelGrid columns="2">
-                    <!-- Sempre salva o id como um campo escondido -->
-                    <h:inputHidden value="#{usu.id}" />
- 
-                    <h:commandButton action="#{usuarioMB.updateUsuario()}" value="#{msgs.update}" rendered="#{usuarioMB.userAdmin}" >
-                        <f:setPropertyActionListener target="#{usuarioMB.usuario}" value="#{usu}" />
-                    </h:commandButton>
-                    <h:commandButton action="#{usuarioMB.deleteUsuario()}" value="#{msgs.delete}" rendered="#{usuarioMB.userAdmin}" >
-                        <f:setPropertyActionListener target="#{usuarioMB.usuario}" value="#{usu}" />
-                    </h:commandButton>
-                </h:panelGrid>
-            </h:column>
-        </h:dataTable>
-        <!-- Esse botão é exibido ao usuário, pra visualização da mensagem de erro msg  -->
-        <h:commandButton action="createUsuario" value="#{msgs.create} #{msgs.usuario}" />
-    </h:form>
+	<p:panel>
+	<!-- LAYOUT INTEIRO -->
+		<p:layout fullPage="true">
+		<!-- MIGALHAS DE PÃO (COMPONENTE BreadCrumb) -->
+			<p:layoutUnit position="top" height="50">
+				<p:breadCrumb>
+					<p:menuitem value="Home" url="http://www.google.com.br" />
+					<p:menuitem value="Registros"
+						url="pages/protected/admin/createUsuario.xhtml" />
+					<p:menuitem value="INFO" url="#" />
+					<p:menuitem value="Estoque" url="#" />
+					<p:menuitem value="Contato" url="#" />
+				</p:breadCrumb>
+			</p:layoutUnit>
+			<!-- MENU LATERAL (COMPONENTE MENU + Submenu + MenuItem) -->
+			<p:layoutUnit position="left" width="180" header="Menu"
+				collapsible="true">
+
+				<p:menu style="width: 98%">
+					<p:submenu label="Contas...">
+						<p:menuitem value="... a pagar" url="#" />
+						<p:menuitem value="... a receber" url="#" />
+					</p:submenu>
+					<p:submenu label="Outros">
+						<p:menuitem value="Home" url="http://www.google.com.br" />
+						<p:menuitem value="Documentos" url="#" />
+						<p:menuitem value="Coisas" url="#" />
+						<p:menuitem value="Dados" url="#" />
+						<p:menuitem value="Relatórios" url="#" />
+					</p:submenu>
+					<p:submenu>
+						<p:menuitem value="Sair" url="#" icon="ui-icon ui-icon-power" />
+					</p:submenu>
+				</p:menu>
+
+			</p:layoutUnit>
+			<!--  MENU SISTEMA (TOOLBAR) + PANELGRID/DATATABSE CENTRAL -->
+			<p:layoutUnit position="center" header="Sistema">
+				<h:form>
+					<p:toolbar>
+						<p:toolbarGroup align="left">
+							<p:commandButton value="Buscar" image="ui-icon-search" />
+							<p:divider />
+							<p:commandButton value="Novo" image="ui-icon-folder-open" />
+							<p:commandButton value="Salvar" disabled="true"
+								image="ui-icon-disk" />
+							<p:commandButton value="Excluir" image="ui-icon-trash" />
+						</p:toolbarGroup>
+						<p:toolbarGroup align="right">
+							<p:commandButton value="Sair" image="ui-icon-power" />
+						</p:toolbarGroup>
+					</p:toolbar>
+					<h3>
+						#{msgs.loginHello}: #{usuarioMB.usuario.nome} ||
+						<p:commandLink action="#{usuarioMB.logOut()}"
+							value="#{msgs.logout}" />
+					</h3>
+
+					<h:panelGrid>
+						<p:dataTable id="tableCliente" value="#{usuarioMB.allUsuarios}"
+							var="u" rows="5" emptyMessage="sem registros" paginator="true">
+							<f:facet name="header">Lista de Clientes</f:facet>
+
+							<p:column sortBy="#{c.nome}" filterBy="#{u.nome}">
+								<f:facet name="header">
+									<h:outputText value="NOME" />
+								</f:facet>
+								<h:outputText value="#{u.nome}" />
+							</p:column>
+							<p:column sortBy="#{u.email}" filterBy="#{u.email}">
+								<f:facet name="header">
+									<h:outputText value="EMAIL" />
+								</f:facet>
+								<h:outputText value="#{u.email}" />
+							</p:column>
+
+							<!-- Sempre salva o id como um campo escondido -->
+							<h:inputHidden value="#{u.id}" />
+
+							<p:column headerText="ALTERAR - EXCLUIR"
+								style="text-align: center">
+								<h:commandButton action="#{usuarioMB.updateUsuario()}"
+									value="#{msgs.update}" rendered="#{usuarioMB.userAdmin}">
+									<f:setPropertyActionListener target="#{usuarioMB.usuario}"
+										value="#{u}" />
+
+								</h:commandButton>
+								<h:commandButton action="#{usuarioMB.deleteUsuario()}"
+									value="#{msgs.delete}" rendered="#{usuarioMB.userAdmin}">
+									<f:setPropertyActionListener target="#{usuarioMB.usuario}"
+										value="#{u}" />
+								</h:commandButton>
+							</p:column>
+						</p:dataTable>
+					</h:panelGrid>
+					<p:commandButton action="createUsuario"
+						value="#{msgs.create} #{msgs.usuario}" />
+					<h:messages />
+				</h:form>
+			</p:layoutUnit>
+				<!-- COMPONENTE DOCK - MENU MAC -->
+				<p:dock position="bottom">
+					<p:menuitem value="Home" icon="resources/images/dock/1.png" url="#" />
+					<p:menuitem value="Music" icon="resources/images/dock/2.png" url="#" />
+					<p:menuitem value="Video" icon="resources/images/dock/3.png" url="#" />
+					<p:menuitem value="Email" icon="resources/images/dock/4.png" url="#" />
+					<p:menuitem value="Portfolio" icon="resources/images/dock/5.png" url="#" />
+					<p:menuitem value="Link" icon="resources/images/dock/6.png" url="#" />
+					<p:menuitem value="RSS" icon="resources/images/dock/7.png" url="#" />
+					<p:menuitem value="History" icon="resources/images/dock/8.png" url="#" />
+				</p:dock>
+		</p:layout>
+	</p:panel>
 </h:body>
 </html>

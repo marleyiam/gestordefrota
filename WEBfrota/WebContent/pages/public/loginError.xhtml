@@ -3,11 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.prime.com.tr/ui">
 <h:head>
-    <h:outputStylesheet library="css" name="main.css" />
+    <link type="text/css" rel="stylesheet" href="dot-luv/skin.css" />
 </h:head>
 <h:body>
-    #{msgs.loginErrorMessage}
+<p:panel>#{msgs.loginErrorMessage}</p:panel> 
 </h:body>
 </html>
+

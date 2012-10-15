@@ -3,15 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.prime.com.tr/ui">
 <h:head>
-    <h:outputStylesheet library="css" name="main.css" />
+<link type="text/css" rel="stylesheet" href="dot-luv/skin.css" />
 </h:head>
 <h:body>
+<p:panel header="#{msgs.usuarioDeleteHeader}:">
     <h:form>
         <h:messages/>
  
-        <h3>#{msgs.usuarioDeleteHeader}: #{usuarioMB.usuario.nome}?</h3>
+        <h3> #{usuarioMB.usuario.nome}?</h3>
         <h:inputHidden value="#{usuarioMB.usuario.id}" />
         <h:panelGrid columns="2">
             <h:commandButton action="#{usuarioMB.deleteUsuarioFinal()}" value="#{msgs.delete}" />
@@ -19,5 +21,6 @@
         </h:panelGrid>
         <br/>
     </h:form>
+    </p:panel>
 </h:body>
 </html>

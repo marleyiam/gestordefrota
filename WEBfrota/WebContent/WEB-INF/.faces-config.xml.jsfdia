@@ -12,10 +12,10 @@
  <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="listaUsarios::#pages#protected#user#listaUsuarios.xhtml"
+    ID="listaUsuarios::#pages#protected#user#listaUsuarios.xhtml"
     NAME="output" PATH="/pages/protected/user/listaUsuarios.xhtml"
     TARGET="rules:#pages#protected#user#listaUsuarios.xhtml"
-    TITLE="listaUsarios" model-entity="JSFProcessItemOutput"/>
+    TITLE="listaUsuarios" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">

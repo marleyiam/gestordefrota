@@ -13,7 +13,19 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/jboss-as-web-7.0.2.Final/modules/javax/faces/api/main/jboss-jsf-api_2.1_spec-2.0.0.Beta1.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/EJBfrota"/>
+	<classpathentry kind="lib" path="C:/jboss-as-web-7.0.2.Final/modules/javax/faces/api/main/jboss-jsf-api_2.1_spec-2.0.0.Beta1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/EJBfrota">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/pc/WEBfrota/WebContent/WEB-INF/lib/dot-luv-1.0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc/WEBfrota/WebContent/WEB-INF/lib/primefaces-2.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc/WEBfrota/WebContent/WEB-INF/lib/primefaces-2.2.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pc/WEBfrota/WebContent/WEB-INF/lib/primefaces-2.2.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
