@@ -22,8 +22,8 @@ public class GenericDAO<T> {
 	public GenericDAO(Class<T> entityClass) {
 		this.entityClass = entityClass;
 	}
-
-	public void save(T entity) {
+	
+	public void create(T entity) {
 		em.persist(entity);
 	}
 
@@ -38,7 +38,8 @@ public class GenericDAO<T> {
 	}
 
 	public T find(int entityID) {
-		return em.find(entityClass, entityID);
+		T entityEncontrada = em.find(entityClass, entityID);
+		return  entityEncontrada;
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

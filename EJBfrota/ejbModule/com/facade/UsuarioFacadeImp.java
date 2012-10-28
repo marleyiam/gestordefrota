@@ -15,12 +15,10 @@ public class UsuarioFacadeImp {
 	
 	@EJB
     private UsuarioDAO usuarioDao;
- 
-    public void save(Usuario usuario) {
-    	usuarioDados(usuario);
- 
-        usuarioDao.save(usuario);
-    }
+    
+	public void save(Usuario usuario){
+		usuarioDao.create(usuario);
+	}
  
     public Usuario update(Usuario usuario) {
     	usuarioDados(usuario);

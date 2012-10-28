@@ -7,6 +7,7 @@ import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +16,10 @@ import com.facade.UsuarioFacade;
 import com.model.Usuario;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class UsuarioMB {
-	
-  @EJB
+
+	@EJB
 	private UsuarioFacade usuarioFacade;
 
 	private static final String CREATE_USUARIO = "Novo Usuario";
@@ -31,7 +32,8 @@ public class UsuarioMB {
 
 	public Usuario getUsuario() {
 		if (usuario == null) {
-			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+			ExternalContext context = FacesContext.getCurrentInstance()
+					.getExternalContext();
 			String userEmail = context.getUserPrincipal().getName();
 
 			usuario = usuarioFacade.findUserByEmail(userEmail);
@@ -39,7 +41,15 @@ public class UsuarioMB {
 
 		return usuario;
 	}
+
+	public Usuario getNewUsuario() {
+		Usuario newusuario = new Usuario();
+		return newusuario;
+	}
 	
+	public void setNewUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
@@ -86,24 +96,26 @@ public class UsuarioMB {
 		return CREATE_USUARIO;
 	}
 
-	public String createUsarioFinal() {
-		try {
-			usuarioFacade.save(usuario);
-		} catch (EJBException e) {
-			sendErrorMessageToUser("Error ao criar usuario");
 
+	public String cadastrarUsuario() {
+		try {		
+			usuarioFacade.save(getNewUsuario());
+			//usuario = new Usuario();
+		} catch (EJBException e) {
+			sendErrorMessageToUser("Erro!!!. Check se se o usuario tem email");
 			return FIQUE_NA_MESMA_PAGINA;
 		}
 
-		sendInfoMessageToUser("Operação Completa: Create");
-
+		sendInfoMessageToUser("Operação Completa: Update");
 		return LISTA_USUARIOS;
+
 	}
 
 	public String listaUsuarios() {
 		return LISTA_USUARIOS;
 	}
-	/**CONTROLE DO USUÁRIO NA SESSÃO (Permissões,obj FacesContext,Mensagens)*/
+
+	/** CONTROLE DO USUÁRIO NA SESSÃO (Permissões,obj FacesContext,Mensagens) */
 
 	public boolean isUserAdmin() {
 		return getRequest().isUserInRole("ADMIN");
