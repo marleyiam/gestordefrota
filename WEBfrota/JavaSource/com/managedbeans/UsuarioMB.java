@@ -1,6 +1,8 @@
 package com.managedbeans;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -28,6 +30,7 @@ public class UsuarioMB {
 	private static final String LISTA_USUARIOS = "listaUsuarios";
 	private static final String FIQUE_NA_MESMA_PAGINA = null;
 
+
 	private Usuario usuario;
 
 	public Usuario getUsuario() {
@@ -46,7 +49,7 @@ public class UsuarioMB {
 		Usuario newusuario = new Usuario();
 		return newusuario;
 	}
-	
+
 	public void setNewUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
@@ -67,7 +70,7 @@ public class UsuarioMB {
 		try {
 			usuarioFacade.update(usuario);
 		} catch (EJBException e) {
-			sendErrorMessageToUser("Erro!!!. Check se se o usuario tem email");
+			sendErrorMessageToUser("Erro na atualização");
 			return FIQUE_NA_MESMA_PAGINA;
 		}
 
@@ -83,7 +86,7 @@ public class UsuarioMB {
 		try {
 			usuarioFacade.delete(usuario);
 		} catch (EJBException e) {
-			sendErrorMessageToUser("Erro. deu reiera");
+			sendErrorMessageToUser("Erro na exclusão");
 			return FIQUE_NA_MESMA_PAGINA;
 		}
 
@@ -96,17 +99,25 @@ public class UsuarioMB {
 		return CREATE_USUARIO;
 	}
 
+	public Map<String, Object> listarPapeis() {
+		Map<String, Object> listaRoles;
+		listaRoles = new LinkedHashMap<String, Object>();
+		listaRoles.put("Selecione", "");
+		listaRoles.put("Admin", "ADMIN"); // label, value
+		listaRoles.put("User", "USER");
+		return listaRoles;
+	}
 
 	public String cadastrarUsuario() {
-		try {		
+		try {
 			usuarioFacade.save(getNewUsuario());
-			//usuario = new Usuario();
+			// usuario = new Usuario();
 		} catch (EJBException e) {
-			sendErrorMessageToUser("Erro!!!. Check se se o usuario tem email");
+			sendErrorMessageToUser("Erro na inclusão");
 			return FIQUE_NA_MESMA_PAGINA;
 		}
 
-		sendInfoMessageToUser("Operação Completa: Update");
+		sendInfoMessageToUser("Operação Completa: Create");
 		return LISTA_USUARIOS;
 
 	}

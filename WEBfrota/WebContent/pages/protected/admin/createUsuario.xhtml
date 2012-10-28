@@ -4,9 +4,9 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.prime.com.tr/ui">
+    xmlns:p="http://primefaces.org/ui">
 <h:head>
-<link type="text/css" rel="stylesheet" href="dot-luv/skin.css" />
+
 </h:head>
 <h:body>
  <p:panel header="${msgs.usuarioCreateHeader}">
@@ -23,14 +23,13 @@
             <!--<h:inputText id="senhaUsuario" value="#{usuarioMB.usuario.senha}" required="true" requiredMessage="#{msgs.usuarioSenhaRequired}"/>-->
             <p:password feedback="true" weakLabel="fraco" goodLabel="médio" strongLabel="forte" promptLabel="Por favor digite a senha !" minLength="" id="senhaUsuario" value="#{usuarioMB.newUsuario.senha}"
 				size="20" required="true" requiredMessage="#{msgs.usuarioSenhaRequired}" />
-
 			<p:message for="senhaUsuario" />
-			 <p:selectOneMenu value="#{opcoes}">  
-            <f:selectItem itemLabel="Select One" itemValue="" />  
-            <f:selectItem itemLabel="Option 1" itemValue="1" />  
-            <f:selectItem itemLabel="Option 2" itemValue="2" />  
-            <f:selectItem itemLabel="Option 3" itemValue="3" />  
-            </p:selectOneMenu>
+			
+             <h:outputLabel for="roleUsuario" value="#{msgs.usuarioRole}" /><br/>
+             <h:selectOneMenu id="roleUsuario" value="#{usuarioMB.newUsuario.role}" requiredMessage="#{msgs.usuarioRoleRequired}">
+   			 <f:selectItems value="#{usuarioMB.listarPapeis()}" />
+   		     </h:selectOneMenu>
+       
         </h:panelGrid>
         <h:panelGrid columns="2">
             <h:commandButton action="#{usuarioMB.cadastrarUsuario()}" value="#{msgs.create}" />

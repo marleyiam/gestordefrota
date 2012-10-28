@@ -2,8 +2,8 @@ package com.dao;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.ejb.Stateless;
+
 
 import com.model.Usuario;
 
@@ -20,5 +20,6 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 	 
 	        return super.findOneResult(Usuario.FIND_BY_EMAIL, parametros);
 	}
+	    
 
 }
